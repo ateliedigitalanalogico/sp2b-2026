@@ -107,14 +107,17 @@ L.tileLayer('https://mt{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
 const listEl    = document.getElementById('pointList');
 const markers   = [];
 const listItems = [];
+let   activeIdx = -1;
 
 function setActive(idx) {
+  activeIdx = idx;
   listItems.forEach((el, i) => el.classList.toggle('active', i === idx));
-  markers.forEach((m, i) => m.setIcon(makeIcon(POINTS[i].id, i === idx)));
+  markers.forEach((m, i)    => m.setIcon(makeIcon(POINTS[i].id, i === idx)));
 }
 
 function clearActive() {
-  listItems.forEach(el => el.classList.remove('active'));
+  activeIdx = -1;
+  listItems.forEach(el   => el.classList.remove('active'));
   markers.forEach((m, i) => m.setIcon(makeIcon(POINTS[i].id, false)));
 }
 
@@ -122,8 +125,12 @@ POINTS.forEach((pt, i) => {
   const marker = L.marker(pt.coords, { icon: makeIcon(pt.id, false) }).addTo(map);
 
   marker.bindPopup(makePopup(pt), { maxWidth: 240, minWidth: 200, closeButton: true });
-  marker.on('click',      () => setActive(i));
-  marker.on('popupclose', () => clearActive());
+
+  // clique direto no pin — abre popup e destaca
+  marker.on('click', () => setActive(i));
+
+  // fechar popup limpa o highlight somente se este pin estava ativo
+  marker.on('popupclose', () => { if (activeIdx === i) clearActive(); });
 
   markers.push(marker);
 
@@ -139,8 +146,8 @@ POINTS.forEach((pt, i) => {
 
   item.addEventListener('click', () => {
     setActive(i);
-    map.setView(pt.coords, 18, { animate: true, duration: 0.6 });
-    marker.openPopup();
+    // flyTo centraliza o pin com animação suave
+    map.flyTo(pt.coords, 17, { animate: true, duration: 0.7 });
   });
 
   listEl.appendChild(item);
