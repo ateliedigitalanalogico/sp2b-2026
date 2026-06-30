@@ -38,14 +38,14 @@ const POINTS = [
 
 /* ── Marcador ─────────────────────────────────────────────────────── */
 function makeIcon(num, isActive) {
-  const border = isActive ? '#FFD600' : 'rgba(255,214,0,.5)';
-  const numColor = isActive ? '#FFD600' : 'rgba(255,214,0,.7)';
-  const shadow = isActive ? '0 2px 12px rgba(0,0,0,.8)' : '0 2px 6px rgba(0,0,0,.5)';
+  const bg       = isActive ? '#FFD600' : '#111111';
+  const numColor = isActive ? '#000000' : 'rgba(255,214,0,.7)';
+  const shadow   = isActive ? '0 2px 14px rgba(255,214,0,.35)' : '0 2px 6px rgba(0,0,0,.5)';
 
   const html = `<div style="
     width:60px;
     height:40px;
-    background:#111111;
+    background:${bg};
     border-radius:6px;
     box-shadow:${shadow};
     display:flex;
@@ -54,6 +54,7 @@ function makeIcon(num, isActive) {
     justify-content:center;
     padding:3px 6px;
     gap:2px;
+    transition:background .2s,box-shadow .2s;
   ">
     <span style="
       font-family:'DM Mono',monospace;
@@ -144,4 +145,32 @@ POINTS.forEach((pt, i) => {
 
   listEl.appendChild(item);
   listItems.push(item);
+});
+
+/* ── Seções ───────────────────────────────────────────────────────── */
+const sectionsEl = document.getElementById('sections');
+
+POINTS.forEach((pt) => {
+  const tags = pt.tags.map(t => `<span class="sec-tag">${t}</span>`).join('');
+  const section = document.createElement('section');
+  section.className = 'sec';
+  section.id = `sec-${pt.id}`;
+  section.innerHTML = `
+    <div class="sec__head">
+      <span class="sec__num">${String(pt.id).padStart(2, '0')}</span>
+      <div>
+        <h2 class="sec__name">${pt.name}</h2>
+        <p class="sec__sub">${pt.sub}</p>
+      </div>
+      <div class="sec__tags">${tags}</div>
+    </div>
+    <div class="sec__body">
+      <div class="sec__text">
+        <p class="sec__placeholder">Descrição técnica da intervenção — a preencher.</p>
+      </div>
+      <div class="sec__image">
+        <div class="sec__img-placeholder">imagem</div>
+      </div>
+    </div>`;
+  sectionsEl.appendChild(section);
 });

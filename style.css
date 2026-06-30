@@ -254,6 +254,95 @@ html, body {
   line-height: 1;
 }
 
+/* ─── SEÇÕES ──────────────────────────────────────────────────────── */
+.sections {
+  border-top: 1px solid var(--border-dim);
+}
+
+.sec {
+  padding: var(--sp-6) var(--sp-5);
+  border-bottom: 1px solid var(--border-dim);
+}
+
+.sec__head {
+  display: flex;
+  align-items: baseline;
+  gap: var(--sp-4);
+  margin-bottom: var(--sp-5);
+  padding-bottom: var(--sp-4);
+  border-bottom: 1px solid var(--border-dim);
+}
+
+.sec__num {
+  font-family: var(--mono);
+  font-size: var(--fs-micro);
+  letter-spacing: .2em;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+.sec__name {
+  font-family: var(--mono);
+  font-size: var(--fs-xl, 22px);
+  font-weight: 300;
+  color: var(--ink);
+  line-height: 1.2;
+  margin-bottom: 4px;
+}
+
+.sec__sub {
+  font-family: var(--mono);
+  font-size: var(--fs-xs);
+  color: var(--ink-faint);
+  letter-spacing: .08em;
+}
+
+.sec__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-1);
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.sec-tag {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  border: 1px solid var(--border-dim);
+  padding: 3px 8px;
+}
+
+.sec__body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-5);
+}
+
+.sec__placeholder {
+  font-family: var(--sans);
+  font-size: var(--fs-base);
+  color: var(--ink-faint);
+  line-height: 1.7;
+  font-style: italic;
+}
+
+.sec__img-placeholder {
+  aspect-ratio: 16/9;
+  background: var(--card-bg);
+  border: 1px dashed var(--border-dim);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--mono);
+  font-size: var(--fs-micro);
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
 /* ─── RESPONSIVO ──────────────────────────────────────────────────── */
 @media (max-width: 768px) {
   .nav { padding: 0 var(--sp-3); }
@@ -274,6 +363,11 @@ html, body {
     max-height: 40vh;
     overflow-y: auto;
   }
+
+  .sec__body { grid-template-columns: 1fr; }
+  .sec { padding: var(--sp-5) var(--sp-3); }
+  .sec__head { flex-wrap: wrap; }
+  .sec__tags { margin-left: 0; }
 
   .footer { padding: 0 var(--sp-3); }
   .footer__text { display: none; }
