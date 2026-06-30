@@ -43,34 +43,36 @@ function makeIcon(num, isActive) {
   const shadow = isActive ? '0 2px 12px rgba(0,0,0,.8)' : '0 2px 6px rgba(0,0,0,.5)';
 
   const html = `<div style="
-    width:44px;
+    width:60px;
+    height:40px;
     background:#111111;
-    border:1.5px solid ${border};
+    border-radius:6px;
     box-shadow:${shadow};
     display:flex;
     flex-direction:column;
     align-items:center;
-    padding:5px 4px 4px;
-    gap:3px;
+    justify-content:center;
+    padding:3px 6px;
+    gap:2px;
   ">
     <span style="
       font-family:'DM Mono',monospace;
-      font-size:9px;
+      font-size:8px;
       letter-spacing:.12em;
       color:${numColor};
       line-height:1;
     ">${String(num).padStart(2, '0')}</span>
     <img src="https://sp2b.com.br/images/logo-sp2b.png"
-         style="width:28px;height:28px;object-fit:contain;display:block;"
+         style="width:32px;height:22px;object-fit:contain;display:block;"
          alt="SP2B">
   </div>`;
 
   return L.divIcon({
     className: '',
     html,
-    iconSize:    [44, 50],
-    iconAnchor:  [22, 50],
-    popupAnchor: [0, -54],
+    iconSize:    [60, 40],
+    iconAnchor:  [30, 40],
+    popupAnchor: [0, -44],
   });
 }
 
