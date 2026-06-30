@@ -65,7 +65,7 @@ html, body {
 
 /* ─── HERO ────────────────────────────────────────────────────────── */
 .hero {
-  padding: var(--sp-5) var(--sp-5) var(--sp-4);
+  padding: var(--sp-2) var(--sp-5);
   border-bottom: 1px solid var(--border-dim);
 }
 
@@ -75,38 +75,13 @@ html, body {
   letter-spacing: .22em;
   text-transform: uppercase;
   color: var(--ink-faint);
-  margin-bottom: var(--sp-2);
 }
-
-.hero__title {
-  font-family: var(--serif);
-  font-size: 42px;
-  font-weight: 300;
-  font-style: italic;
-  color: var(--ink);
-  line-height: 1.1;
-  margin-bottom: var(--sp-4);
-}
-
-.hero__title strong {
-  font-style: normal;
-  font-family: var(--mono);
-  font-size: 32px;
-  font-weight: 300;
-  color: var(--accent);
-  letter-spacing: .03em;
-}
-
-.hero__meta       { display: flex; gap: var(--sp-6); }
-.hero__meta-item  { display: flex; flex-direction: column; gap: 3px; }
-.hero__meta-label { font-family: var(--mono); font-size: var(--fs-micro); letter-spacing: .2em; text-transform: uppercase; color: var(--ink-faint); }
-.hero__meta-value { font-family: var(--mono); font-size: var(--fs-sm); color: var(--ink-mid); }
 
 /* ─── LAYOUT MAP ──────────────────────────────────────────────────── */
 .layout {
   display: grid;
   grid-template-columns: 1fr 268px;
-  height: calc(100vh - 52px - 104px - 44px);
+  height: calc(100vh - 52px - 33px - 44px);
   min-height: 480px;
 }
 
