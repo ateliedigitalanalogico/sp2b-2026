@@ -38,26 +38,39 @@ const POINTS = [
 
 /* ── Marcador ─────────────────────────────────────────────────────── */
 function makeIcon(num, isActive) {
-  const div = document.createElement('div');
-  div.className = 'map-pin' + (isActive ? ' map-pin--active' : '');
+  const border = isActive ? '#FFD600' : 'rgba(255,214,0,.5)';
+  const numColor = isActive ? '#FFD600' : 'rgba(255,214,0,.7)';
+  const shadow = isActive ? '0 2px 12px rgba(0,0,0,.8)' : '0 2px 6px rgba(0,0,0,.5)';
 
-  const img = document.createElement('img');
-  img.src = 'https://sp2b.com.br/images/logo-sp2b.png';
-  img.alt = 'SP2B';
-
-  const label = document.createElement('span');
-  label.className = 'map-pin__num';
-  label.textContent = String(num).padStart(2, '0');
-
-  div.appendChild(img);
-  div.appendChild(label);
+  const html = `<div style="
+    width:44px;
+    background:#111111;
+    border:1.5px solid ${border};
+    box-shadow:${shadow};
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding:5px 4px 4px;
+    gap:3px;
+  ">
+    <span style="
+      font-family:'DM Mono',monospace;
+      font-size:9px;
+      letter-spacing:.12em;
+      color:${numColor};
+      line-height:1;
+    ">${String(num).padStart(2, '0')}</span>
+    <img src="https://sp2b.com.br/images/logo-sp2b.png"
+         style="width:28px;height:28px;object-fit:contain;display:block;"
+         alt="SP2B">
+  </div>`;
 
   return L.divIcon({
     className: '',
-    html: div.outerHTML,
-    iconSize:    [40, 40],
-    iconAnchor:  [20, 20],
-    popupAnchor: [0, -24],
+    html,
+    iconSize:    [44, 50],
+    iconAnchor:  [22, 50],
+    popupAnchor: [0, -54],
   });
 }
 
